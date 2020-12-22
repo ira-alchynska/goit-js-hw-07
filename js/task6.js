@@ -3,15 +3,22 @@
 //Если введено подходящее количество, то border инпута становится зеленым, если неправильное - красным.
 
 
-function validInput(inputValue, number) {
-  return inputValue.length <= number * 1 ? true : false;
-}
-const input = document.querySelector('#validation-input');
+let inputVal = document.getElementById("validation-input");
 
-input.addEventListener('blur', event => {
- let rez = validInput(event.target.value, event.target.dataset.length);
-  rez ? (input.classList.add('valid'), input.classList.remove('invalid')) : (
-    input.classList.add('invalid'), input.classList.remove('valid')   
-  )
-});
+let totalLenght = inputVal.getAttribute("data-length");
+let intTotallenght = parseInt(totalLenght, 10);
+
+inputVal.oninput = function() {
+  if (inputVal.value.length === intTotallenght) {
+    inputVal.classList.remove("invalid");
+    inputVal.classList.add("valid");
+  }
+  if (inputVal.value.length === 0) {
+    inputVal.classList.remove("valid");
+    inputVal.classList.remove("invalid");
+  }
+  if (inputVal.value.length !== intTotallenght && inputVal.value.length !== 0) {
+    inputVal.classList.add("invalid");
+  }
+};
 

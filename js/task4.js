@@ -5,22 +5,22 @@
 //Добавь слушатели кликов на кнопки, вызовы функций и обновление интерфейса
 
 
-let counter = document.querySelector('#counter');
-let counterValue = counter.querySelector('#value');
-const increment = counterValue => {
-  return (counterValue += 1);
-};
-function decrement(counterValue) {
-  return (counterValue -= 1);
-}
+const valueRef = document.querySelector('#value');
+const incrementBtn = document.querySelector("[data-action='increment']");
+const decrementBtn = document.querySelector("[data-action='decrement']");
 
-counter.addEventListener('click', event => {
- // console.log(event);
-  let click = event.target.dataset.action;
-  console.log(click)
-  if (click === 'increment') {
-    counterValue.textContent = increment(counterValue.textContent * 1);
-  }else if(click === 'decrement') {
-      counterValue.textContent = decrement(counterValue.textContent * 1);
-  }
-});
+let counterValue = Number(valueRef.textContent);
+
+const increment = () => {
+  counterValue += 1;
+  valueRef.textContent = counterValue;
+};
+
+const decrement = () => {
+  counterValue -= 1;
+  valueRef.textContent = counterValue;
+};
+incrementBtn.addEventListener('click', increment);
+decrementBtn.addEventListener('click', decrement);
+
+

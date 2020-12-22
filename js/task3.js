@@ -22,10 +22,10 @@ const images = [
     },
   ];
 
-const liImage = images.map(i => {
+const itemImage = images.map(i => {
     return `<li><img src = '${i.url}' alt = '${i.alt}'/></li>`
 }).reduce((acc, li) => {
     return acc += li;
 }, '');
 const gallery = document.querySelector('#gallery');
-  gallery.insertAdjacentHTML("afterbegin", liImage);
+  gallery.insertAdjacentHTML("afterbegin", itemImage);
